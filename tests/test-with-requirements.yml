@@ -1,0 +1,40 @@
+name: Test with requirements.txt
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+
+      - name: Set up MkDocs project with requirements
+        run: |
+          cp tests/fixtures/with-requirements/mkdocs.yml "$GITHUB_WORKSPACE/mkdocs.yml"
+          cp tests/fixtures/with-requirements/requirements.txt "$GITHUB_WORKSPACE/requirements.txt"
+          mkdir -p "$GITHUB_WORKSPACE/docs"
+          cp tests/fixtures/with-requirements/docs/index.md "$GITHUB_WORKSPACE/docs/index.md"
+
+      - id: action
+        uses: .
+        with:
+          mkdocs_version: 'latest'
+          requirements: 'requirements.txt'
+          configfile: 'mkdocs.yml'
+
+      - name: Assert site directory was created
+        run: |
+          echo "Checking for built site directory..."
+          if [ ! -d "$GITHUB_WORKSPACE/site" ]; then
+            echo "FAIL: site/ directory was not created by mkdocs build"
+            exit 1
+          fi
+          echo "PASS: site/ directory exists"
+
+      - name: Assert index.html was generated
+        run: |
+          echo "Checking for index.html..."
+          if [ ! -f "$GITHUB_WORKSPACE/site/index.html" ]; then
+            echo "FAIL: site/index.html was not generated"
+            exit 1
+          fi
+          echo "PASS: site/index.html exists"
