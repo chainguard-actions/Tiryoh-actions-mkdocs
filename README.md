@@ -6,9 +6,9 @@ Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at
 
 ## Versions
 
-| Version | Tag | Upstream commit |
-|---------|-----|-----------------|
-| v0.25.0 | [`v0.25.0`](https://github.com/chainguard-actions/Tiryoh-actions-mkdocs/tree/v0.25.0) | [`08208db`](https://github.com/Tiryoh/actions-mkdocs/commit/08208dbe49e1d15f9a58a6eb691e7dfb2df2253c) |
+| Version | Tag | Upstream commit | Hardening report |
+|---------|-----|-----------------|------------------|
+| v0.25.0 | [`v0.25.0`](https://github.com/chainguard-actions/Tiryoh-actions-mkdocs/tree/v0.25.0) | [`08208db`](https://github.com/Tiryoh/actions-mkdocs/commit/08208dbe49e1d15f9a58a6eb691e7dfb2df2253c) | [`HARDENING.md`](https://github.com/chainguard-actions/Tiryoh-actions-mkdocs/blob/v0.25.0/HARDENING.md) |
 
 ## Privacy
 
